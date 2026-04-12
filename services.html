@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexScale – Leistungen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+
+    /* ─── RESET & TOKENS ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* palette */
+      --ink:        #0d0f12;
+      --ink-2:      #3a3f4b;
+      --ink-3:      #6b7280;
+      --surface:    #ffffff;
+      --surface-2:  #f5f6f8;
+      --surface-3:  #eceef2;
+      --line:       #e4e6eb;
+
+      /* accents */
+      --green:      #00c48c;
+      --green-soft: #e6faf4;
+      --blue:       #4a6cf7;
+      --blue-soft:  #eef1fe;
+      --purple:     #9b59e8;
+      --purple-soft:#f3edfd;
+      --orange:     #f97316;
+      --orange-soft:#fff4ec;
+
+      /* radii */
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-xl: 32px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 56px;
+      height: 68px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .logo em { color: var(--green); font-style: normal; }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--ink-3); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--ink); }
+
+    .nav-right { display: flex; gap: 10px; align-items: center; }
+
+    .btn-ghost {
+      font-size: 0.875rem; font-weight: 600;
+      color: var(--ink); background: none;
+      border: 1.5px solid var(--line);
+      padding: 9px 20px; border-radius: 100px;
+      cursor: pointer; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-ghost:hover { border-color: var(--ink-2); background: var(--surface-2); }
+
+    .btn-solid {
+      font-size: 0.875rem; font-weight: 600;
+      color: #fff; background: var(--ink);
+      border: none;
+      padding: 10px 22px; border-radius: 100px;
+      cursor: pointer; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-solid:hover { background: var(--ink-2); transform: translateY(-1px); }
+
+    /* ─── PAGE HERO ──────────────────────────────────────────────────── */
+    .page-hero {
+      max-width: 1160px; margin: 0 auto;
+      padding: 88px 32px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .page-hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-soft);
+      color: #00966d;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .page-hero-label::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .page-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.06;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+
+    .page-hero h1 mark {
+      background: none;
+      color: var(--green);
+    }
+
+    .page-hero p {
+      margin-top: 22px;
+      font-size: 1.05rem;
+      color: var(--ink-2);
+      max-width: 440px;
+      line-height: 1.7;
+    }
+
+    .page-hero-ctas {
+      display: flex; gap: 12px;
+      margin-top: 36px; flex-wrap: wrap;
+    }
+
+    /* Stats strip on the right */
+    .page-hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--line);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .stat-box {
+      background: var(--surface);
+      padding: 32px 28px;
+    }
+    .stat-box:first-child { border-radius: var(--r-lg) 0 0 0; }
+    .stat-box:nth-child(2) { border-radius: 0 var(--r-lg) 0 0; }
+    .stat-box:nth-child(3) { border-radius: 0 0 0 var(--r-lg); }
+    .stat-box:last-child   { border-radius: 0 0 var(--r-lg) 0; }
+
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.4rem;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--ink-3);
+      margin-top: 4px;
+    }
+    .stat-tag {
+      display: inline-block;
+      background: var(--green-soft);
+      color: #00966d;
+      font-size: 0.72rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 100px;
+      margin-top: 8px;
+    }
+
+    /* ─── SECTION WRAPPER ────────────────────────────────────────────── */
+    .section {
+      max-width: 1160px; margin: 0 auto;
+      padding: 80px 32px;
+    }
+
+    .section-header {
+      max-width: 600px;
+      margin-bottom: 56px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      line-height: 1.1;
+      letter-spacing: -.5px;
+    }
+
+    .section-sub {
+      margin-top: 16px;
+      font-size: 1rem;
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+
+    /* ─── DIVIDER LINE ───────────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 0 32px;
+    }
+
+    /* ─── SERVICES GRID ──────────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 36px 32px;
+      display: flex; flex-direction: column;
+      gap: 16px;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      border-color: transparent;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.09);
+      transform: translateY(-4px);
+    }
+
+    .service-card.featured {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--ink-2);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .service-card.featured p { color: rgba(255,255,255,0.65); }
+
+    .service-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 100px;
+      background: var(--surface-2);
+      color: var(--ink-2);
+    }
+
+    .service-card.featured .tag {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.75);
+    }
+
+    .service-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--ink); text-decoration: none;
+      margin-top: auto;
+      transition: gap .2s;
+    }
+    .service-link:hover { gap: 10px; }
+    .service-card.featured .service-link { color: var(--green); }
+
+    /* ─── HOW IT WORKS ───────────────────────────────────────────────── */
+    .how-bg {
+      background: var(--surface-2);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    /* Connecting line */
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 27px; left: calc(12.5%);
+      width: calc(75%);
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--green) 0%, var(--blue) 50%, var(--purple) 100%);
+      opacity: .35;
+    }
+
+    .step {
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin: 0 auto 24px;
+      position: relative; z-index: 1;
+    }
+
+    .step h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 0.85rem;
+      color: var(--ink-3);
+      line-height: 1.65;
+    }
+
+    /* ─── DETAIL ROWS (one per service) ──────────────────────────────── */
+    .detail-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 72px 32px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .detail-row.reverse { direction: rtl; }
+    .detail-row.reverse > * { direction: ltr; }
+
+    .detail-body {}
+
+    .detail-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .detail-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -.5px;
+    }
+
+    .detail-body p {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: var(--ink-2);
+      line-height: 1.75;
+    }
+
+    .feature-list {
+      margin-top: 28px;
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .check {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.65rem;
+      margin-top: 1px;
+    }
+
+    .cta-row {
+      display: flex; gap: 12px;
+      margin-top: 36px; flex-wrap: wrap;
+    }
+
+    /* Visual placeholder cards */
+    .detail-visual {
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background: var(--surface-2);
+      border: 1.5px solid var(--line);
+      padding: 28px;
+      min-height: 360px;
+      display: flex; flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .vis-top {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .vis-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+
+    .vis-title-bar {
+      flex: 1; height: 12px; border-radius: 100px;
+      background: var(--line);
+    }
+
+    .vis-card {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 16px 18px;
+    }
+
+    .vis-card-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .vis-label {
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--ink-3);
+    }
+
+    .vis-badge {
+      font-size: 0.68rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 100px;
+    }
+
+    .vis-bar-wrap {
+      height: 6px; background: var(--surface-3);
+      border-radius: 100px; overflow: hidden;
+    }
+    .vis-bar {
+      height: 100%; border-radius: 100px;
+    }
+
+    .vis-row {
+      display: flex; gap: 10px; align-items: center;
+    }
+
+    .vis-icon-box {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .vis-text-line {
+      flex: 1;
+    }
+
+    .vis-line-a {
+      height: 10px; border-radius: 100px;
+      background: var(--surface-3);
+      margin-bottom: 5px;
+    }
+
+    .vis-line-b {
+      height: 8px; border-radius: 100px;
+      background: var(--line);
+      width: 60%;
+    }
+
+    .vis-chip-row {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+
+    .vis-chip {
+      font-size: 0.7rem; font-weight: 500;
+      padding: 4px 10px; border-radius: 100px;
+      background: var(--surface-3);
+      color: var(--ink-2);
+    }
+
+    /* ─── INTEGRATIONS STRIP ─────────────────────────────────────────── */
+    .integrations-bg {
+      background: var(--surface);
+    }
+
+    .integration-logos {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .int-logo {
+      display: flex; align-items: center; gap: 9px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 10px 18px;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .int-logo-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ─── FAQ ────────────────────────────────────────────────────────── */
+    .faq-bg { background: var(--surface-2); }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 24px 26px;
+      cursor: pointer;
+    }
+
+    .faq-item summary {
+      font-weight: 600;
+      font-size: 0.95rem;
+      list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+    }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--ink-3);
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+
+    .faq-item p {
+      margin-top: 14px;
+      font-size: 0.875rem;
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+
+    /* ─── FINAL CTA ──────────────────────────────────────────────────── */
+    .cta-section {
+      background: var(--ink);
+      margin: 80px 32px;
+      border-radius: var(--r-xl);
+      padding: 72px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .cta-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -.5px;
+      color: #fff;
+      max-width: 520px;
+    }
+
+    .cta-section h2 span { color: var(--green); }
+
+    .cta-right {
+      display: flex; flex-direction: column; gap: 12px;
+      align-items: flex-start;
+    }
+
+    .cta-note {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .btn-green {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700; font-size: 0.95rem;
+      padding: 14px 28px; border-radius: 100px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 0 24px rgba(0,196,140,0.35);
+    }
+
+    .btn-green:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(0,196,140,0.5);
+    }
+
+    .btn-white-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-weight: 600; font-size: 0.875rem;
+      padding: 12px 24px; border-radius: 100px;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.12); cursor: pointer;
+      transition: background .2s;
+    }
+
+    .btn-white-ghost:hover { background: rgba(255,255,255,0.13); }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 48px 56px 32px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand p {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--ink-3);
+      max-width: 260px;
+      line-height: 1.65;
+    }
+
+    .footer-col h5 {
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      color: var(--ink-2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--ink); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      padding: 24px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--ink-3);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .steps-grid::before { display: none; }
+      .detail-row { grid-template-columns: 1fr; gap: 40px; }
+      .detail-row.reverse { direction: ltr; }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .page-hero {
+        grid-template-columns: 1fr;
+        padding: 60px 20px 40px;
+      }
+      .page-hero-stats { grid-template-columns: 1fr 1fr; }
+      .section { padding: 56px 20px; }
+      .detail-row { padding: 56px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 48px 32px; margin: 40px 20px; }
+      footer { grid-template-columns: 1fr; padding: 40px 24px 24px; }
+      .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim { opacity: 0; }
+    .anim.visible { animation: fadeUp .55s ease forwards; }
+    .anim:nth-child(1) { animation-delay: .0s; }
+    .anim:nth-child(2) { animation-delay: .08s; }
+    .anim:nth-child(3) { animation-delay: .16s; }
+    .anim:nth-child(4) { animation-delay: .24s; }
+    .anim:nth-child(5) { animation-delay: .32s; }
+    .anim:nth-child(6) { animation-delay: .40s; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────────────────────── -->
+  <nav>
+    <a href="index.html" class="logo">Nex<em>Scale</em></a>
+    <ul class="nav-links">
+      <li><a href="services.html" class="active">Leistungen</a></li>
+      <li><a href="#">Integrationen</a></li>
+      <li><a href="#">Fallstudien</a></li>
+      <li><a href="#">Über uns</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#" class="btn-ghost">Anmelden</a>
+      <a href="#" class="btn-solid">Kostenlos testen</a>
+    </div>
+  </nav>
+
+  <!-- ─── PAGE HERO ────────────────────────────────────────────────────── -->
+  <div class="page-hero">
+    <div>
+      <div class="page-hero-label">Unsere Leistungen</div>
+      <h1>Weniger <mark>Handarbeit.</mark><br />Mehr Output.</h1>
+      <p>Von der Workflow-Automatisierung bis zum intelligenten KI-Agenten – wir liefern Systeme, die Ihre Prozesse übernehmen, damit Ihr Team sich auf das Wesentliche konzentriert.</p>
+      <div class="page-hero-ctas">
+        <a href="#services" class="btn-solid">Leistungen entdecken</a>
+        <a href="#contact" class="btn-ghost">Gespräch vereinbaren</a>
+      </div>
+    </div>
+    <div class="page-hero-stats">
+      <div class="stat-box">
+        <div class="stat-number">68%</div>
+        <div class="stat-label">weniger manuelle Aufgaben</div>
+        <span class="stat-tag">↑ Effizienz</span>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">12×</div>
+        <div class="stat-label">schnellere Deployments</div>
+        <span class="stat-tag">↑ Geschwindigkeit</span>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">99.97%</div>
+        <div class="stat-label">garantierte Verfügbarkeit</div>
+        <span class="stat-tag">SLA gesichert</span>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">∅ 3 Wo.</div>
+        <div class="stat-label">bis zur ersten Live-Integration</div>
+        <span class="stat-tag">↑ Time-to-Value</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── SERVICES GRID ────────────────────────────────────────────────── -->
+  <div class="section" id="services">
+    <div class="section-header">
+      <div class="section-eyebrow">Was wir tun</div>
+      <h2 class="section-title">Vier Hebel für nachhaltige Skalierung</h2>
+      <p class="section-sub">Jede Leistung ist auf messbare Ergebnisse ausgelegt – keine Konzepte ohne Umsetzung, keine Umsetzung ohne Wirkung.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card anim">
+        <div class="service-icon" style="background:#e6faf4;">⚡</div>
+        <h3>Workflow-Automatisierung</h3>
+        <p>Wir analysieren Ihre Prozesse, identifizieren Engpässe und bauen Automatisierungen, die zuverlässig laufen – auch wenn Sie schlafen.</p>
+        <div class="service-tags">
+          <span class="tag">n8n</span>
+          <span class="tag">Make</span>
+          <span class="tag">Zapier</span>
+          <span class="tag">Custom</span>
+        </div>
+        <a href="#automation" class="service-link">Mehr erfahren →</a>
+      </div>
+
+      <div class="service-card featured anim">
+        <div class="service-icon" style="background:rgba(255,255,255,0.08);">🤖</div>
+        <h3>KI-Agenten & Assistenten</h3>
+        <p>Intelligente Systeme, die eigenständig Aufgaben übernehmen – von der Recherche über das Verfassen von Texten bis zur Entscheidungsunterstützung.</p>
+        <div class="service-tags">
+          <span class="tag">GPT-4o</span>
+          <span class="tag">Claude</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Fine-Tuning</span>
+        </div>
+        <a href="#agents" class="service-link">Mehr erfahren →</a>
+      </div>
+
+      <div class="service-card anim">
+        <div class="service-icon" style="background:#eef1fe;">🔗</div>
+        <h3>System-Integrationen</h3>
+        <p>Ihre Tools reden nicht miteinander? Wir verbinden CRM, ERP, Datenbanken und SaaS-Plattformen zu einem kohärenten System – ohne Code-Chaos.</p>
+        <div class="service-tags">
+          <span class="tag">REST API</span>
+          <span class="tag">Webhooks</span>
+          <span class="tag">ETL</span>
+          <span class="tag">No-Code</span>
+        </div>
+        <a href="#integrations" class="service-link">Mehr erfahren →</a>
+      </div>
+
+      <div class="service-card anim">
+        <div class="service-icon" style="background:#fff4ec;">🛠️</div>
+        <h3>Custom Software</h3>
+        <p>Wenn Standard-Tools nicht reichen, bauen wir es. Schlanke, wartbare Web-Applikationen und interne Tools – maßgeschneidert für Ihr Geschäftsmodell.</p>
+        <div class="service-tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Docker</span>
+        </div>
+        <a href="#software" class="service-link">Mehr erfahren →</a>
+      </div>
+
+      <div class="service-card anim">
+        <div class="service-icon" style="background:#f3edfd;">📊</div>
+        <h3>Data & Reporting</h3>
+        <p>Aus Rohdaten werden Entscheidungsgrundlagen. Wir bauen Dashboards, Pipelines und Reports, die Ihnen täglich den Überblick geben.</p>
+        <div class="service-tags">
+          <span class="tag">Metabase</span>
+          <span class="tag">Superset</span>
+          <span class="tag">SQL</span>
+          <span class="tag">BigQuery</span>
+        </div>
+        <a href="#data" class="service-link">Mehr erfahren →</a>
+      </div>
+
+      <div class="service-card anim" style="background:var(--surface-2); border-color:transparent; justify-content:center; align-items:center; text-align:center; min-height:260px;">
+        <div style="font-size:2rem; margin-bottom:14px;">💬</div>
+        <h3 style="font-size:1rem;">Nicht das Richtige dabei?</h3>
+        <p style="font-size:0.85rem; margin-top:8px;">Beschreiben Sie uns Ihr Problem – wir finden eine Lösung.</p>
+        <a href="#" class="btn-solid" style="margin-top:20px; font-size:0.82rem; padding:10px 20px;">Gespräch buchen</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── HOW IT WORKS ─────────────────────────────────────────────────── -->
+  <div class="how-bg">
+    <div class="section">
+      <div class="section-header" style="margin-bottom:64px;">
+        <div class="section-eyebrow">Ablauf</div>
+        <h2 class="section-title">Von Null zur laufenden Automatisierung in 4 Schritten</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step anim">
+          <div class="step-num">01</div>
+          <h4>Analyse & Mapping</h4>
+          <p>Wir verstehen Ihre aktuellen Prozesse, Systemlandschaft und Engpässe – bevor wir die erste Zeile konfigurieren.</p>
+        </div>
+        <div class="step anim">
+          <div class="step-num">02</div>
+          <h4>Architektur & Konzept</h4>
+          <p>Sie erhalten einen klaren Plan: Technologien, Zeitplan, Deliverables. Kein Overengineering, keine unnötige Komplexität.</p>
+        </div>
+        <div class="step anim">
+          <div class="step-num">03</div>
+          <h4>Aufbau & Integration</h4>
+          <p>Wir bauen iterativ, testen mit echten Daten und integrieren in Ihre bestehende Infrastruktur – vollständig dokumentiert.</p>
+        </div>
+        <div class="step anim">
+          <div class="step-num">04</div>
+          <h4>Übergabe & Betrieb</h4>
+          <p>Sie erhalten die vollständige Kontrolle. Auf Wunsch übernehmen wir Monitoring, Wartung und Weiterentwicklung.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── DETAIL: AUTOMATION ───────────────────────────────────────────── -->
+  <div class="detail-row" id="automation">
+    <div class="detail-body">
+      <div class="detail-badge" style="background:var(--green-soft); color:#00966d;">⚡ Workflow-Automatisierung</div>
+      <h2>Prozesse, die von selbst laufen</h2>
+      <p>Jede Stunde, die Ihr Team mit manuellen, wiederholbaren Aufgaben verbringt, ist verschwendetes Potenzial. Wir identifizieren diese Stellen präzise und ersetzen sie durch stabile, überwachte Automationen.</p>
+      <ul class="feature-list">
+        <li>
+          <span class="check" style="background:var(--green-soft); color:var(--green);">✓</span>
+          Automatischer Lead-Empfang, Scoring und CRM-Eintrag
+        </li>
+        <li>
+          <span class="check" style="background:var(--green-soft); color:var(--green);">✓</span>
+          Rechnungsverarbeitung und Buchhaltungsexporte ohne manuelle Eingriffe
+        </li>
+        <li>
+          <span class="check" style="background:var(--green-soft); color:var(--green);">✓</span>
+          Team-Benachrichtigungen und Eskalationen in Echtzeit
+        </li>
+        <li>
+          <span class="check" style="background:var(--green-soft); color:var(--green);">✓</span>
+          Monitoring, Fehler-Alerts und automatische Wiederholversuche
+        </li>
+      </ul>
+      <div class="cta-row">
+        <a href="#" class="btn-solid">Kostenloses Erstgespräch</a>
+        <a href="#" class="btn-ghost">Fallstudie ansehen</a>
+      </div>
+    </div>
+    <div class="detail-visual">
+      <div class="vis-top">
+        <div class="vis-dot" style="background:#00c48c;"></div>
+        <div class="vis-dot" style="background:#fbbf24;"></div>
+        <div class="vis-title-bar"></div>
+      </div>
+      <!-- Flow visualization -->
+      <div style="display:flex; flex-direction:column; gap:10px; flex:1;">
+        <div style="font-size:0.7rem; font-weight:600; color:var(--ink-3); text-transform:uppercase; letter-spacing:.08em;">Aktive Workflows</div>
+        <div class="vis-card">
+          <div class="vis-card-head">
+            <span class="vis-label">Lead → CRM → Slack</span>
+            <span class="vis-badge" style="background:var(--green-soft); color:#00966d;">Aktiv</span>
+          </div>
+          <div class="vis-bar-wrap"><div class="vis-bar" style="width:94%; background:var(--green);"></div></div>
+          <div style="font-size:0.7rem; color:var(--ink-3); margin-top:6px;">847 Ausführungen heute</div>
+        </div>
+        <div class="vis-card">
+          <div class="vis-card-head">
+            <span class="vis-label">Rechnung → Buchhaltung</span>
+            <span class="vis-badge" style="background:var(--blue-soft); color:var(--blue);">Aktiv</span>
+          </div>
+          <div class="vis-bar-wrap"><div class="vis-bar" style="width:100%; background:var(--blue);"></div></div>
+          <div style="font-size:0.7rem; color:var(--ink-3); margin-top:6px;">312 Ausführungen heute</div>
+        </div>
+        <div class="vis-card">
+          <div class="vis-card-head">
+            <span class="vis-label">Onboarding-Sequenz</span>
+            <span class="vis-badge" style="background:var(--purple-soft); color:var(--purple);">Aktiv</span>
+          </div>
+          <div class="vis-bar-wrap"><div class="vis-bar" style="width:78%; background:var(--purple);"></div></div>
+          <div style="font-size:0.7rem; color:var(--ink-3); margin-top:6px;">58 neue Nutzer</div>
+        </div>
+        <div style="background:var(--green-soft); border-radius:var(--r-sm); padding:12px 16px; margin-top:auto;">
+          <div style="font-size:0.78rem; font-weight:700; color:#00966d;">↑ 68% weniger manuelle Eingriffe</div>
+          <div style="font-size:0.72rem; color:#00966d; opacity:.7; margin-top:2px;">seit Implementierung</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── DETAIL: KI-AGENTEN ───────────────────────────────────────────── -->
+  <div class="detail-row reverse" id="agents">
+    <div class="detail-body">
+      <div class="detail-badge" style="background:var(--surface-2); color:var(--ink-2);">🤖 KI-Agenten</div>
+      <h2>KI, die Aufgaben übernimmt – nicht nur empfiehlt</h2>
+      <p>Moderne KI-Agenten sind mehr als Chatbots. Sie recherchieren, erstellen, entscheiden und handeln – vollständig eingebunden in Ihre bestehenden Systeme und Datenbasis.</p>
+      <ul class="feature-list">
+        <li>
+          <span class="check" style="background:var(--surface-3); color:var(--ink);">✓</span>
+          Interne Wissensagenten auf Basis Ihrer Dokumente (RAG)
+        </li>
+        <li>
+          <span class="check" style="background:var(--surface-3); color:var(--ink);">✓</span>
+          Automatisierte Recherche, Zusammenfassung und Reporting
+        </li>
+        <li>
+          <span class="check" style="background:var(--surface-3); color:var(--ink);">✓</span>
+          Kundenservice-Agenten mit Eskalationslogik
+        </li>
+        <li>
+          <span class="check" style="background:var(--surface-3); color:var(--ink);">✓</span>
+          Modellwahl je nach Anwendungsfall (GPT-4o, Claude, Mistral)
+        </li>
+      </ul>
+      <div class="cta-row">
+        <a href="#" class="btn-solid">Agenten-Demo ansehen</a>
+        <a href="#" class="btn-ghost">Use Cases besprechen</a>
+      </div>
+    </div>
+    <div class="detail-visual" style="background:var(--ink); border-color:rgba(255,255,255,0.08);">
+      <div style="display:flex; flex-direction:column; gap:12px; flex:1;">
+        <div style="font-size:0.7rem; font-weight:600; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:.08em;">KI-Agent • Live</div>
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px 16px;">
+          <div style="font-size:0.75rem; color:rgba(255,255,255,0.45); margin-bottom:8px;">Nutzer-Anfrage</div>
+          <div style="font-size:0.85rem; color:#fff; line-height:1.5;">"Erstelle einen Wettbewerbs-Report für Q2 basierend auf unseren letzten 30 CRM-Einträgen."</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:flex-start;">
+          <div style="width:28px; height:28px; border-radius:8px; background:var(--green); display:flex; align-items:center; justify-content:center; font-size:0.75rem; flex-shrink:0;">🤖</div>
+          <div style="background:rgba(0,196,140,0.12); border:1px solid rgba(0,196,140,0.25); border-radius:12px; padding:12px 14px; font-size:0.82rem; color:rgba(255,255,255,0.85); line-height:1.55;">
+            Analysiere 30 Einträge... Identifiziere 3 Hauptwettbewerber... Strukturiere Report...
+            <div style="display:flex; gap:4px; margin-top:8px;">
+              <div style="width:5px; height:5px; border-radius:50%; background:var(--green); animation:pulse 1s ease infinite;"></div>
+              <div style="width:5px; height:5px; border-radius:50%; background:var(--green); animation:pulse 1s .2s ease infinite;"></div>
+              <div style="width:5px; height:5px; border-radius:50%; background:var(--green); animation:pulse 1s .4s ease infinite;"></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:auto; display:flex; gap:8px; flex-wrap:wrap;">
+          <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:100px; padding:6px 12px; font-size:0.72rem; font-weight:600; color:rgba(255,255,255,0.5);">CRM-Zugriff ✓</div>
+          <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:100px; padding:6px 12px; font-size:0.72rem; font-weight:600; color:rgba(255,255,255,0.5);">Web-Recherche ✓</div>
+          <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:100px; padding:6px 12px; font-size:0.72rem; font-weight:600; color:rgba(255,255,255,0.5);">PDF-Export ✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─── INTEGRATIONS ─────────────────────────────────────────────────── -->
+  <div class="integrations-bg">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">Integrationen</div>
+        <h2 class="section-title">Läuft mit Ihrem Stack</h2>
+        <p class="section-sub">Wir arbeiten mit den Tools, die Sie bereits verwenden – kein Systemwechsel, keine Datenmigration, kein Vendor-Lock-in.</p>
+      </div>
+      <div class="integration-logos">
+        <div class="int-logo"><span class="int-logo-icon">☁️</span>Salesforce</div>
+        <div class="int-logo"><span class="int-logo-icon">📋</span>HubSpot</div>
+        <div class="int-logo"><span class="int-logo-icon">💬</span>Slack</div>
+        <div class="int-logo"><span class="int-logo-icon">📧</span>Gmail</div>
+        <div class="int-logo"><span class="int-logo-icon">📁</span>Google Drive</div>
+        <div class="int-logo"><span class="int-logo-icon">📊</span>Notion</div>
+        <div class="int-logo"><span class="int-logo-icon">🗂️</span>Airtable</div>
+        <div class="int-logo"><span class="int-logo-icon">🛒</span>Shopify</div>
+        <div class="int-logo"><span class="int-logo-icon">💳</span>Stripe</div>
+        <div class="int-logo"><span class="int-logo-icon">🐙</span>GitHub</div>
+        <div class="int-logo"><span class="int-logo-icon">🎯</span>Jira</div>
+        <div class="int-logo"><span class="int-logo-icon">🔌</span>REST API</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FAQ ──────────────────────────────────────────────────────────── -->
+  <div class="faq-bg">
+    <div class="section">
+      <div class="section-header">
+        <div class="section-eyebrow">Häufige Fragen</div>
+        <h2 class="section-title">Klare Antworten, bevor Sie fragen müssen</h2>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-item" open>
+          <summary>Wie lange dauert ein typisches Projekt?</summary>
+          <p>Einfache Automatisierungen sind oft in 1–2 Wochen live. Komplexe Multi-System-Integrationen oder KI-Agenten benötigen in der Regel 4–8 Wochen. Wir nennen Ihnen nach dem ersten Gespräch eine realistische Einschätzung.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Brauchen wir eigene Entwickler im Team?</summary>
+          <p>Nein. Wir bauen die Lösung und übergeben sie mit vollständiger Dokumentation und Schulung. Viele unserer Kunden haben kein technisches Team und verwalten ihre Automationen selbstständig über No-Code-Interfaces.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Was kostet eine Automatisierung?</summary>
+          <p>Das hängt vom Umfang ab. Wir arbeiten entweder nach Aufwand (Stundensatz) oder als Festpreis-Projekt. Nach einem 30-minütigen Erstgespräch erhalten Sie ein transparentes Angebot – ohne versteckte Kosten.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Was passiert, wenn die Automatisierung einen Fehler macht?</summary>
+          <p>Wir bauen Fehlerbehandlung und Monitoring von Anfang an ein. Bei kritischen Workflows gibt es Alerts, automatische Wiederholversuche und Fallback-Logik. Auf Wunsch übernehmen wir auch den laufenden Betrieb.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Können wir auch eine bestehende Automatisierung übernehmen?</summary>
+          <p>Ja. Wir analysieren den bestehenden Workflow, dokumentieren ihn und übernehmen Wartung und Weiterentwicklung – unabhängig davon, wer ihn ursprünglich gebaut hat.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Welche KI-Modelle werden eingesetzt?</summary>
+          <p>Je nach Anforderung arbeiten wir mit GPT-4o, Claude, Mistral oder Open-Source-Modellen. Wir empfehlen keine "one size fits all"-Lösung, sondern wählen das Modell nach Kosten, Datenschutz und Leistung aus.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FINAL CTA ─────────────────────────────────────────────────────── -->
+  <div style="padding: 0 0 40px;">
+    <div class="cta-section">
+      <h2>Bereit, Ihre Prozesse zu <span>automatisieren?</span></h2>
+      <div class="cta-right">
+        <a href="#" class="btn-green">
+          Kostenloses Erstgespräch →
+        </a>
+        <a href="#" class="btn-white-ghost">Demo-Video ansehen</a>
+        <p class="cta-note">Kein Commitment. Keine Verpflichtung. 30 Minuten.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Nex<em>Scale</em></a>
+      <p>Wir automatisieren Prozesse, bauen KI-Agenten und integrieren Systeme – damit Ihr Unternehmen mit der gleichen Mannschaft mehr schafft.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Leistungen</h5>
+      <ul>
+        <li><a href="#">Workflow-Automatisierung</a></li>
+        <li><a href="#">KI-Agenten</a></li>
+        <li><a href="#">Integrationen</a></li>
+        <li><a href="#">Custom Software</a></li>
+        <li><a href="#">Data & Reporting</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Unternehmen</h5>
+      <ul>
+        <li><a href="#">Über uns</a></li>
+        <li><a href="#">Fallstudien</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Karriere</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Rechtliches</h5>
+      <ul>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">AGB</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© 2025 NexScale GmbH</span>
+    <span>Alle Rechte vorbehalten.</span>
+  </div>
+
+  <!-- ─── SCROLL ANIMATIONS ─────────────────────────────────────────────── -->
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.anim').forEach(el => io.observe(el));
+
+    // Animate progress bars when visible
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.vis-bar').forEach(b => {
+            const w = b.style.width;
+            b.style.width = '0%';
+            setTimeout(() => {
+              b.style.transition = 'width 1.1s cubic-bezier(.4,0,.2,1)';
+              b.style.width = w;
+            }, 100);
+          });
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.detail-visual').forEach(el => barObs.observe(el));
+  </script>
+
+</body>
+</html>

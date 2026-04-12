@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 200" width="620" height="200">
+
+  <!-- White background -->
+  <rect width="620" height="200" fill="#FFFFFF"/>
+
+  <!-- Orange asterisk / star symbol — 8 rays, no background -->
+  <!-- Horizontal -->
+  <line x1="40" y1="95" x2="140" y2="95" stroke="#E07820" stroke-width="9" stroke-linecap="round"/>
+  <!-- Vertical -->
+  <line x1="90" y1="45" x2="90" y2="145" stroke="#E07820" stroke-width="9" stroke-linecap="round"/>
+  <!-- Diagonal \ -->
+  <line x1="54" y1="59" x2="126" y2="131" stroke="#E07820" stroke-width="9" stroke-linecap="round"/>
+  <!-- Diagonal / -->
+  <line x1="126" y1="59" x2="54" y2="131" stroke="#E07820" stroke-width="9" stroke-linecap="round"/>
+  <!-- Center white dot -->
+  <circle cx="90" cy="95" r="9" fill="#FFFFFF"/>
+
+  <!-- SmartKI text -->
+  <text
+    x="168"
+    y="108"
+    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="62"
+    font-weight="500"
+    letter-spacing="-1"
+    fill="#231F20"
+  >Smart<tspan fill="#E07820">KI</tspan></text>
+
+  <!-- Orange horizontal line -->
+  <line x1="168" y1="124" x2="590" y2="124" stroke="#E07820" stroke-width="1.5"/>
+
+  <!-- FLOW subtext -->
+  <text
+    x="170"
+    y="158"
+    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="22"
+    font-weight="600"
+    letter-spacing="10"
+    fill="#E07820"
+  >FLOW</text>
+
+</svg>

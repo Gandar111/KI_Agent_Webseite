@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termin vereinbaren | SmartKI Automation</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #1e1535; overflow-x: hidden; color: #0d0d14; }
+
+        /* NAV */
+        nav { padding: 0; position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(255,255,255,.96); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,.06); box-shadow: 0 1px 16px rgba(0,0,0,.05); }
+        nav .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; }
+        .logo-img { height: 54px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: #3d3d5c; text-decoration: none; font-weight: 500; font-size: .875rem; transition: color .2s; }
+        .nav-links a:hover { color: #0d0d14; }
+        .nav-links a.active { color: #0d0d14; font-weight: 600; }
+        .nav-cta { background: linear-gradient(135deg, #7c3aed 0%, #e040fb 100%) !important; color: #fff !important; padding: 10px 22px !important; border-radius: 100px !important; font-weight: 700 !important; font-size: .875rem !important; transition: all .2s !important; box-shadow: 0 4px 14px rgba(224,64,251,.35) !important; }
+        .nav-cta:hover { filter: brightness(1.1) !important; transform: translateY(-1px) !important; box-shadow: 0 6px 22px rgba(224,64,251,.5) !important; }
+
+        /* HERO */
+        .termin-hero {
+            padding: 130px 24px 0;
+            background: #1e1535;
+            text-align: center;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.25);
+            color: #c084fc;
+            font-size: .72rem; font-weight: 700;
+            letter-spacing: .12em; text-transform: uppercase;
+            padding: 6px 18px; border-radius: 100px;
+            margin-bottom: 24px;
+        }
+        .termin-hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800; color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -.03em; line-height: 1.1;
+        }
+        .termin-hero p {
+            font-size: 1.1rem; color: rgba(255,255,255,.7);
+            max-width: 560px; margin: 0 auto 44px; line-height: 1.7;
+        }
+        .features-row {
+            display: flex; justify-content: center;
+            gap: 36px; flex-wrap: wrap;
+            padding-bottom: 56px;
+        }
+        .feature-item {
+            display: flex; align-items: center; gap: 10px;
+            color: rgba(255,255,255,.75); font-size: .9rem; font-weight: 500;
+        }
+        .feature-item svg { flex-shrink: 0; stroke: #c084fc; }
+
+        /* CALENDAR */
+        .calendar-wrap {
+            background: #fff;
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+            box-shadow: 0 -8px 40px rgba(108,0,224,.12);
+            border: 1px solid rgba(108,0,224,.1);
+            border-bottom: none;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .calendar-wrap iframe {
+            display: block;
+            width: 100%;
+            height: 750px;
+            border: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .termin-hero { padding: 100px 20px 0; }
+            .termin-hero h1 { font-size: 2rem; }
+            .features-row { gap: 20px; flex-direction: column; align-items: center; }
+            .calendar-wrap iframe { height: 600px; }
+        }
+        .animate-up { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+        .animate-up.visible { opacity: 1; transform: translateY(0); }
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href='index.html'>
+            <img src="Logo/SmartKI_Automation_Logo.svg" alt="SmartKI Automation Logo" class="logo-img">
+        </a>
+        <div class="nav-links">
+            <a href='index.html'>Home</a>
+            <a href='index.html'>KI-Agent</a>
+            <a class='nav-cta active' href='termin.html' style="display:inline-flex;align-items:center;gap:7px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Termin vereinbaren
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="termin-hero">
+    <div class="container">
+        <span class="badge">Kostenlos &amp; Unverbindlich</span>
+        <h1>Termin vereinbaren</h1>
+        <p>Buch dir direkt einen Termin mit uns. Wir schauen uns gemeinsam an, wie wir dein Unternehmen mit Automatisierung und KI voranbringen können.</p>
+        <div class="features-row">
+            <div class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path></svg>
+                Kostenlose Erstberatung
+            </div>
+            <div class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                30 Minuten, ohne Verpflichtung
+            </div>
+            <div class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                Online per Video-Call
+            </div>
+        </div>
+        <div class="calendar-wrap">
+            <iframe src="https://calendly.com/alsufyani59/30min" scrolling="no"></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    /* Dropdown hover fix */
+document.querySelectorAll(".nav-dropdown").forEach(function(dd) {
+    var t; var c = dd.querySelector(".nav-dropdown-content");
+    dd.addEventListener("mouseenter", function() { clearTimeout(t); if(c) c.style.display="block"; });
+    dd.addEventListener("mouseleave", function() { t = setTimeout(function(){ if(c) c.style.display="none"; }, 250); });
+    if(c) {
+        c.addEventListener("mouseenter", function() { clearTimeout(t); });
+        c.addEventListener("mouseleave", function() { t = setTimeout(function(){ c.style.display="none"; }, 250); });
+        c.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ c.style.display="none"; }); });
+    }
+});
+var targets = document.querySelectorAll("h1, h2, h3, p, .card, .badge, .hero-btn, .features-row, .calendar-wrap");
+    targets.forEach(function(el) { el.classList.add("animate-up"); });
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry, i) {
+            if (entry.isIntersecting) {
+                setTimeout(function() { entry.target.classList.add("visible"); }, i * 80);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    targets.forEach(function(el) { observer.observe(el); });
+})();
+</script>
+</body>
+</html>

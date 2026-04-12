@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webentwicklung | SmartKI Automation</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #ffffff; color: #0d0d14; line-height: 1.7; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        nav { padding: 0; position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(255,255,255,.96); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,.06); box-shadow: 0 1px 16px rgba(0,0,0,.05); }
+        nav .container { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        .logo-img { height: 54px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: #3d3d5c; text-decoration: none; font-weight: 500; font-size: .875rem; transition: color .2s; }
+        .nav-links a:hover { color: #0d0d14; }
+        .nav-cta { background: linear-gradient(135deg, #7c3aed 0%, #e040fb 100%) !important; color: #fff !important; padding: 10px 22px !important; border-radius: 100px !important; font-weight: 700 !important; font-size: .875rem !important; transition: all .2s !important; display: inline-flex !important; align-items: center !important; gap: 7px !important; box-shadow: 0 4px 14px rgba(224,64,251,.35) !important; }
+        .nav-cta:hover { filter: brightness(1.1) !important; transform: translateY(-1px) !important; }
+        .nav-dropdown { position: relative; display: inline-block; }
+        .nav-dropdown-label { color: #3d3d5c; font-weight: 500; font-size: .875rem; display: inline-flex; align-items: center; cursor: pointer; transition: color .2s; }
+        .nav-dropdown-label:hover { color: #0d0d14; }
+        .nav-dropdown-content { display: none; position: absolute; background: #fff; min-width: 220px; box-shadow: 0 8px 32px rgba(108,0,224,.12), 0 2px 8px rgba(0,0,0,.08); border: 1px solid rgba(108,0,224,.1); z-index: 1000; border-radius: 14px; padding: 8px; top: calc(100% + 8px); left: 0; }
+        .nav-dropdown-content a { color: #3d3d5c !important; padding: 10px 14px !important; display: flex !important; align-items: center; font-size: .875rem !important; font-weight: 500 !important; text-decoration: none; border-radius: 8px; transition: background .15s, color .15s; }
+        .nav-dropdown-content a:hover { background: rgba(108,0,224,.07) !important; color: #7c3aed !important; }
+        /* dropdown via JS */
+        .hero { padding: 150px 24px 90px; text-align: center; background: #ffffff; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; width: 600px; height: 600px; top: -100px; left: 50%; transform: translateX(-50%); border-radius: 50%; filter: blur(120px); background: radial-gradient(circle, rgba(124,58,237,.07), transparent 70%); pointer-events: none; }
+        .badge { display: inline-block; background: rgba(108,0,224,.08); border: 1px solid rgba(108,0,224,.22); color: #7c3aed; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 6px 18px; border-radius: 100px; margin-bottom: 24px; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: #0d0d14; margin-bottom: 20px; letter-spacing: -.03em; line-height: 1.15; position: relative; }
+        .hero h1 span { background: linear-gradient(135deg, #7c3aed, #e040fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 1.1rem; color: #475569; max-width: 600px; margin: 0 auto 44px; position: relative; }
+        .hero-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #7c3aed 0%, #e040fb 100%); color: #fff; padding: 14px 32px; border-radius: 100px; font-weight: 700; font-size: .95rem; text-decoration: none; transition: all .2s; box-shadow: 0 4px 20px rgba(224,64,251,.4); position: relative; }
+        .hero-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(224,64,251,.5); }
+        .cards { padding: 80px 0; background: #f7f4ff; }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .card { background: #ffffff; border: 1px solid rgba(108,0,224,.1); border-radius: 20px; padding: 36px 30px; transition: all .3s; }
+        .card:hover { border-color: rgba(108,0,224,.3); box-shadow: 0 8px 32px rgba(108,0,224,.1); transform: translateY(-4px); }
+        .card-icon { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .card-icon svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .card:nth-child(1) .card-icon { background: linear-gradient(135deg, #7c3aed, #a855f7); box-shadow: 0 4px 14px rgba(124,58,237,.3); }
+        .card:nth-child(2) .card-icon { background: linear-gradient(135deg, #e040fb, #f472b6); box-shadow: 0 4px 14px rgba(224,64,251,.3); }
+        .card:nth-child(3) .card-icon { background: linear-gradient(135deg, #3b82f6, #60a5fa); box-shadow: 0 4px 14px rgba(59,130,246,.3); }
+        .card:nth-child(4) .card-icon { background: linear-gradient(135deg, #06b6d4, #22d3ee); box-shadow: 0 4px 14px rgba(6,182,212,.3); }
+        .card:nth-child(5) .card-icon { background: linear-gradient(135deg, #f97316, #fb923c); box-shadow: 0 4px 14px rgba(249,115,22,.3); }
+        .card:nth-child(6) .card-icon { background: linear-gradient(135deg, #10b981, #34d399); box-shadow: 0 4px 14px rgba(16,185,129,.3); }
+        .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: #0d0d14; }
+        .card p { color: #64748b; font-size: .92rem; line-height: 1.65; }
+        .cta-strip { padding: 100px 24px; background: linear-gradient(135deg, #1e1535 0%, #3b1278 50%, #1e1535 100%); text-align: center; position: relative; overflow: hidden; }
+        .cta-strip::before { content: ''; position: absolute; width: 600px; height: 300px; top: -80px; left: 50%; transform: translateX(-50%); border-radius: 50%; filter: blur(120px); background: rgba(108,0,224,.4); pointer-events: none; }
+        .cta-strip h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: #fff; margin-bottom: 16px; position: relative; }
+        .cta-strip p { color: rgba(255,255,255,.75); font-size: 1rem; margin-bottom: 36px; position: relative; }
+        .cta-strip a { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #7c3aed 0%, #e040fb 100%); color: #fff; padding: 14px 32px; border-radius: 100px; font-weight: 700; text-decoration: none; transition: all .2s; box-shadow: 0 4px 20px rgba(224,64,251,.45); position: relative; }
+        .cta-strip a:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        footer { background: #1e1535; border-top: 1px solid rgba(255,255,255,.07); padding: 40px 0; text-align: center; color: rgba(255,255,255,.4); font-size: .85rem; }
+        footer a { color: #c084fc; text-decoration: none; }
+        footer a:hover { color: #e040fb; }
+            .animate-up { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+        .animate-up.visible { opacity: 1; transform: translateY(0); }
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+<nav>
+    <div class="container">
+        <a href='index.html'><img src="Logo/SmartKI_Automation_Logo.svg" alt="SmartKI Automation" class="logo-img"></a>
+        <div class="nav-links">
+            <a href='index.html'>Home</a>
+            <div class="nav-dropdown">
+                <span class="nav-dropdown-label">Dienstleistungen <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                <div class="nav-dropdown-content">
+                    <a href='prozess.html'>Prozess Automatisierung</a>
+                    <a href='ki-agenten.html'>KI-Agenten</a>
+                    <a href='webentwicklung.html' style="color:#7c3aed!important;font-weight:600;background:rgba(108,0,224,.07);">Webentwicklung</a>
+                </div>
+            </div>
+            <a class='nav-cta' href='termin.html'><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Termin vereinbaren</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <span class="badge">Dienstleistung</span>
+    <h1>Moderne <span>Webentwicklung</span><br>mit KI-Integration</h1>
+    <p>Wir bauen schnelle, moderne Websites und Web-Apps – direkt integriert mit Ihren Automatisierungen und KI-Agenten.</p>
+    <a class="hero-btn" href="termin.html">Kostenlose Beratung anfragen →</a>
+</section>
+
+<section class="cards">
+    <div class="container">
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                <h3>Landing Pages</h3>
+                <p>Schnelle, konversionsstarke Landing Pages – optimiert für Google und mobile Geräte.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                <h3>Unternehmenswebsites</h3>
+                <p>Professionelle Firmenwebsites, die Vertrauen aufbauen und Kunden gewinnen.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+                <h3>Web-Apps</h3>
+                <p>Individuelle Web-Anwendungen – von Dashboards bis zu internen Tools mit KI-Anbindung.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+                <h3>SEO-Optimierung</h3>
+                <p>Ihre Website soll gefunden werden – wir optimieren Struktur, Inhalte und technisches SEO.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+                <h3>Chatbot-Integration</h3>
+                <p>KI-Chatbots direkt in Ihre Website eingebaut – für Support, Lead-Generierung und mehr.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                <h3>Wartung & Support</h3>
+                <p>Wir halten Ihre Website aktuell, sicher und schnell – mit regelmäßigen Updates.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="cta-strip">
+    <h2>Eine Website, die für Sie arbeitet</h2>
+    <p>Lassen Sie uns gemeinsam Ihr Online-Auftreten auf das nächste Level bringen.</p>
+    <a href="termin.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Termin vereinbaren</a>
+</div>
+
+<footer>
+    <div class="container">© 2025 SmartKI Automation · Berlin · <a href="mailto:info@smartki.com">info@smartki.com</a></div>
+</footer>
+<script>
+(function() {
+    /* Dropdown hover fix */
+document.querySelectorAll(".nav-dropdown").forEach(function(dd) {
+    var t; var c = dd.querySelector(".nav-dropdown-content");
+    dd.addEventListener("mouseenter", function() { clearTimeout(t); if(c) c.style.display="block"; });
+    dd.addEventListener("mouseleave", function() { t = setTimeout(function(){ if(c) c.style.display="none"; }, 250); });
+    if(c) {
+        c.addEventListener("mouseenter", function() { clearTimeout(t); });
+        c.addEventListener("mouseleave", function() { t = setTimeout(function(){ c.style.display="none"; }, 250); });
+        c.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ c.style.display="none"; }); });
+    }
+});
+var targets = document.querySelectorAll("h1, h2, h3, p, .card, .badge, .hero-btn, .features-row, .calendar-wrap");
+    targets.forEach(function(el) { el.classList.add("animate-up"); });
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry, i) {
+            if (entry.isIntersecting) {
+                setTimeout(function() { entry.target.classList.add("visible"); }, i * 80);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    targets.forEach(function(el) { observer.observe(el); });
+})();
+</script>
+</body>
+</html>
