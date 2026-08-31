@@ -9,33 +9,20 @@
       <stop offset="0%" style="stop-color:#7B2FBE;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#C9457A;stop-opacity:1" />
     </linearGradient>
-    <mask id="maskAuto">
-      <text
-        x="170" y="158"
-        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
-        font-size="22" font-weight="600" letter-spacing="10"
-        fill="white"
-      >AUTOMATION</text>
-    </mask>
-    <mask id="maskSymbol">
-      <!-- Claude-like shape: rounded outer ring with notch/gap at top-right -->
-      <circle cx="90" cy="95" r="46" fill="white"/>
-      <!-- Inner cutout -->
-      <circle cx="90" cy="95" r="28" fill="black"/>
-      <!-- Gap/notch at top-right to mimic Claude logo open ring -->
-      <rect x="110" y="49" width="36" height="22" rx="11" fill="black" transform="rotate(45 128 60)"/>
-    </mask>
-    <mask id="maskLine">
-      <rect x="168" y="122" width="422" height="4" fill="white"/>
-    </mask>
   </defs>
 
   <!-- White background -->
   <rect width="620" height="200" fill="#FFFFFF"/>
 
-  <!-- Claude-like symbol: open rounded ring with gradient -->
-  <!-- Outer filled circle masked to ring shape with gap -->
-  <rect x="44" y="49" width="92" height="92" fill="url(#gradSymbol)" mask="url(#maskSymbol)"/>
+  <!-- Claude-like symbol: open rounded ring with gradient, drawn as a plain donut path -->
+  <!-- (avoids <mask>, which some mobile browsers rasterize at a fixed resolution and render blurry) -->
+  <path
+    fill-rule="evenodd"
+    fill="url(#gradSymbol)"
+    d="M44,95 a46,46 0 1,0 92,0 a46,46 0 1,0 -92,0 Z M62,95 a28,28 0 1,0 56,0 a28,28 0 1,0 -56,0 Z"
+  />
+  <!-- Gap/notch at top-right to mimic the open ring, painted in the background white -->
+  <rect x="110" y="49" width="36" height="22" rx="11" fill="#FFFFFF" transform="rotate(45 128 60)"/>
   <!-- Inner dot in center -->
   <circle cx="90" cy="95" r="8" fill="url(#gradSymbol)"/>
 
@@ -50,7 +37,12 @@
   <!-- Gradient horizontal line -->
   <rect x="168" y="122.25" width="422" height="1.5" fill="url(#gradText)"/>
 
-  <!-- AUTOMATION subtext in gradient -->
-  <rect x="168" y="136" width="422" height="30" fill="url(#gradText)" mask="url(#maskAuto)"/>
+  <!-- AUTOMATION subtext, gradient fill applied directly to the text -->
+  <text
+    x="170" y="158"
+    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="22" font-weight="600" letter-spacing="10"
+    fill="url(#gradText)"
+  >AUTOMATION</text>
 
 </svg>
